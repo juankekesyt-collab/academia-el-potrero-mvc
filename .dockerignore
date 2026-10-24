@@ -1,0 +1,13 @@
+.git/
+.gitignore
+.vscode/
+.vs/
+bin/
+obj/
+publish/
+docs/capturas/
+README.md
+DEPLOY.md
+GUION_VIDEO.md
+Dockerfile
+.dockerignore
