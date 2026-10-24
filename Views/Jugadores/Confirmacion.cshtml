@@ -1,0 +1,176 @@
+@model Jugador
+@{
+    ViewData["Title"] = "Confirmación de inscripción";
+    var mensaje = TempData["Mensaje"] as string;
+}
+
+<div class="container py-5">
+    @if (!string.IsNullOrWhiteSpace(mensaje))
+    {
+        <div class="alert alert-success d-flex align-items-center gap-3 success-alert" role="alert">
+            <span class="success-check" aria-hidden="true">✓</span>
+            <div>
+                <strong>Inscripción registrada.</strong>
+                <span class="d-block">@mensaje</span>
+            </div>
+        </div>
+    }
+
+    <nav aria-label="Ruta de navegación" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Jugadores" asp-action="Index">Jugadores</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inscripción #@Model.Id.ToString("D4")</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <article class="card ticket-card overflow-hidden">
+                <div class="ticket-header p-4 p-md-5">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                        <div>
+                            <span class="section-eyebrow text-dark">Ficha de inscripción</span>
+                            <h1 class="h2 mb-2">¡Bienvenido a El Potrero!</h1>
+                            <p class="mb-0 ticket-subtitle">
+                                @Model.NombreCompleto ya hace parte de la categoría
+                                <strong>@Model.Categoria?.Nombre</strong>.
+                            </p>
+                        </div>
+                        <span class="status-badge">@Model.Estado</span>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex flex-wrap justify-content-between gap-2 mb-4 pb-3 border-bottom">
+                        <span class="data-label">Inscripción <strong class="text-dark">#@Model.Id.ToString("D4")</strong></span>
+                        <span class="data-label">
+                            Registrada el
+                            <strong class="text-dark">@Model.FechaRegistro.ToString("dd 'de' MMMM 'de' yyyy · hh:mm tt")</strong>
+                        </span>
+                    </div>
+
+                    <h2 class="h5 mb-3">Datos del jugador</h2>
+                    <div class="row g-3 data-grid">
+                        <div class="col-sm-6">
+                            <span class="data-label">Nombre completo</span>
+                            <p class="data-value">@Model.NombreCompleto</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Documento</span>
+                            <p class="data-value">@Model.Documento</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Fecha de nacimiento</span>
+                            <p class="data-value">@Model.FechaNacimiento?.ToString("dd/MM/yyyy") · @Model.Edad años</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Posición y pie hábil</span>
+                            <p class="data-value">@Model.Posicion · @Model.PieHabil</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Sede</span>
+                            <p class="data-value">Sede @Model.Sede</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Acudiente</span>
+                            <p class="data-value">@Model.Acudiente</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Teléfono</span>
+                            <p class="data-value">@Model.Telefono</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="data-label">Correo electrónico</span>
+                            <p class="data-value"><a href="mailto:@Model.Correo">@Model.Correo</a></p>
+                        </div>
+                    </div>
+
+                    <div class="category-box mt-4">
+                        <div class="category-box-icon" aria-hidden="true">@Model.Categoria?.Icono</div>
+                        <div class="flex-grow-1">
+                            <span class="data-label">Categoría asignada por edad</span>
+                            <h2 class="h5 mb-1">@Model.Categoria?.Nombre</h2>
+                            <p class="mb-0 small">
+                                @Model.Categoria?.RangoEdad · @Model.Categoria?.Horario
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="h5 mt-4 mb-3">Resumen de la mensualidad</h2>
+                    <div class="fee-table">
+                        <div class="fee-row">
+                            <span>Mensualidad base (@Model.Categoria?.Nombre)</span>
+                            <span>@Model.MensualidadBase.ToString("C0")</span>
+                        </div>
+                        @if (Model.Descuento > 0)
+                        {
+                            <div class="fee-row fee-discount">
+                                <span>Descuento por hermano en la academia (10 %)</span>
+                                <span>-@Model.Descuento.ToString("C0")</span>
+                            </div>
+                        }
+                        <div class="fee-row fee-total">
+                            <span>Total mensual</span>
+                            <strong>@Model.MensualidadFinal.ToString("C0")</strong>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <a class="btn btn-brand" asp-controller="Jugadores" asp-action="Index">
+                            Ver jugadores inscritos
+                        </a>
+                        <a class="btn btn-outline-brand" asp-controller="Jugadores" asp-action="Create">
+                            Inscribir otro jugador
+                        </a>
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">
+                            Volver al inicio
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-lg-4">
+            <aside class="card side-card p-4 mb-4">
+                <h2 class="h5">¿Qué sigue?</h2>
+                <ol class="next-steps mt-3 mb-0">
+                    <li>
+                        <span>1</span>
+                        <div>
+                            <strong>Confirma el cupo</strong>
+                            <p class="small mb-0">La academia contactará al acudiente por teléfono o correo.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>2</span>
+                        <div>
+                            <strong>Entrega los documentos</strong>
+                            <p class="small mb-0">Documento del jugador, carné de EPS y autorización del acudiente.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>3</span>
+                        <div>
+                            <strong>Llega al primer entrenamiento</strong>
+                            <p class="small mb-0">Con ropa deportiva, hidratación y muchas ganas de jugar.</p>
+                        </div>
+                    </li>
+                </ol>
+            </aside>
+
+            <aside class="card side-card p-4">
+                <h2 class="h6 text-uppercase">Contacto</h2>
+                <ul class="list-unstyled contact-list mb-0">
+                    <li><span aria-hidden="true">📞</span> (604) 555 20 26</li>
+                    <li><span aria-hidden="true">✉️</span> info@elpotrero.co</li>
+                    <li><span aria-hidden="true">📍</span> Sedes Norte, Sur y Envigado</li>
+                </ul>
+                <div class="alert alert-warm small mt-4 mb-0">
+                    Esta inscripción se guarda en memoria para el proyecto académico.
+                    Al reiniciar la aplicación, la lista vuelve a los datos de ejemplo.
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

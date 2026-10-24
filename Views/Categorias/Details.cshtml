@@ -1,0 +1,89 @@
+@model Categoria
+@{
+    ViewData["Title"] = Model.Nombre;
+    var jugadores = ViewBag.Jugadores as List<Jugador> ?? new List<Jugador>();
+}
+
+<div class="container py-5">
+    <nav aria-label="Ruta de navegación" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Categorias" asp-action="Index">Categorías</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <article class="card detail-card overflow-hidden">
+                <div class="detail-icon" aria-hidden="true">@Model.Icono</div>
+                <div class="card-body p-4 p-lg-5">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge category-badge">@Model.RangoEdad</span>
+                        <span class="badge category-fee">@Model.Mensualidad.ToString("C0") / mes</span>
+                    </div>
+
+                    <h1 class="h2 mb-3">Categoría @Model.Nombre</h1>
+                    <p class="lead detail-description">@Model.Descripcion</p>
+
+                    <div class="schedule-box">
+                        <span aria-hidden="true">🕒</span>
+                        <div>
+                            <span class="data-label">Horario de entrenamiento</span>
+                            <strong>@Model.Horario</strong>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <a class="btn btn-brand btn-lg" asp-controller="Jugadores" asp-action="Create">
+                            Inscribir en esta categoría
+                        </a>
+                        <a class="btn btn-outline-secondary btn-lg" asp-controller="Categorias" asp-action="Index">
+                            Volver a categorías
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-lg-5">
+            <aside class="card side-card p-4 h-100">
+                <h2 class="h5">Jugadores en @Model.Nombre</h2>
+                <p class="text-muted small">
+                    @jugadores.Count @(jugadores.Count == 1 ? "jugador inscrito" : "jugadores inscritos")
+                </p>
+
+                @if (jugadores.Count == 0)
+                {
+                    <div class="empty-mini">
+                        <span aria-hidden="true">⚽</span>
+                        <p class="mb-0">Todavía no hay jugadores en esta categoría. ¡Sé el primero!</p>
+                    </div>
+                }
+                else
+                {
+                    <ul class="player-list">
+                        @foreach (var jugador in jugadores)
+                        {
+                            <li>
+                                <a asp-controller="Jugadores" asp-action="Confirmacion" asp-route-id="@jugador.Id">
+                                    <span class="player-avatar" aria-hidden="true">@jugador.NombreCompleto.Substring(0, 1)</span>
+                                    <span class="player-info">
+                                        <strong>@jugador.NombreCompleto</strong>
+                                        <small>@jugador.Edad años · @jugador.Posicion</small>
+                                    </span>
+                                    <span class="player-arrow" aria-hidden="true">→</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+
+                <div class="alert alert-warm small mt-4 mb-0">
+                    La categoría se asigna automáticamente con la fecha de nacimiento
+                    del jugador.
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+@{
+    ViewData["Title"] = "Nosotros";
+}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-eyebrow">Nuestra historia</span>
+        <h1 class="page-title">Fútbol formativo con raíces de barrio</h1>
+        <p class="page-text">
+            El Potrero nació en una cancha de barrio con la idea de que ningún niño
+            se quedara sin un lugar para jugar, aprender y crecer.
+        </p>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+            <div class="story-visual" aria-hidden="true">
+                <span class="story-emoji">⚽</span>
+                <span class="story-badge">Desde 2014</span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <span class="section-eyebrow">Quiénes somos</span>
+            <h2 class="section-title">Formamos personas antes que jugadores</h2>
+            <p>
+                Empezamos con un grupo de doce niños en la comuna 13 y hoy acompañamos
+                a más de cien familias en tres sedes de Medellín y Envigado. Nuestros
+                entrenadores están certificados y trabajan con un plan pedagógico por
+                categoría.
+            </p>
+            <p>
+                Creemos que el fútbol enseña a levantarse después de una derrota, a
+                respetar al rival y a confiar en el compañero. Por eso medimos el
+                progreso no solo en goles, sino también en actitud y disciplina.
+            </p>
+            <div class="row g-3 mt-3">
+                <div class="col-sm-6">
+                    <div class="value-card">
+                        <span aria-hidden="true">🎓</span>
+                        <h3 class="h6 mb-1">Entrenadores certificados</h3>
+                        <p class="small mb-0">Formación deportiva y pedagógica.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="value-card">
+                        <span aria-hidden="true">🛡️</span>
+                        <h3 class="h6 mb-1">Ambiente seguro</h3>
+                        <p class="small mb-0">Protocolos y acompañamiento familiar.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="value-card">
+                        <span aria-hidden="true">🌱</span>
+                        <h3 class="h6 mb-1">Semilleros</h3>
+                        <p class="small mb-0">Desde los 4 años, sin presión competitiva.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="value-card">
+                        <span aria-hidden="true">🏆</span>
+                        <h3 class="h6 mb-1">Competencia formativa</h3>
+                        <p class="small mb-0">Torneos locales y proyectos de vida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="section-heading text-center">
+        <span class="section-eyebrow">Nuestro método</span>
+        <h2 class="section-title">Tres pilares de formación</h2>
+    </div>
+    <div class="row g-4 mt-1">
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">01</span>
+                <h3 class="h5">Técnica</h3>
+                <p class="mb-0">Control, pase, conducción y definición adaptados a cada edad.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">02</span>
+                <h3 class="h5">Táctica</h3>
+                <p class="mb-0">Lectura del juego, posiciones y toma de decisiones en cancha.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">03</span>
+                <h3 class="h5">Valores</h3>
+                <p class="mb-0">Disciplina, respeto, trabajo en equipo y manejo de la frustración.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="info-band">
+        <div class="row g-4 text-center text-md-start">
+            <div class="col-md-4">
+                <h2 class="h6 text-uppercase">Sedes</h2>
+                <p class="mb-0">Norte: Estadio<br />Sur: Belén<br />Envigado: La Paz</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="h6 text-uppercase">Horarios</h2>
+                <p class="mb-0">Lun–Vie: 4:00 – 7:00 p. m.<br />Sábados: 8:00 – 11:00 a. m.</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="h6 text-uppercase">Contacto</h2>
+                <p class="mb-0">(604) 555 20 26<br />info@elpotrero.co</p>
+            </div>
+        </div>
+        <div class="row g-3 mt-3 pt-3 border-top border-light border-opacity-25 text-center text-md-start">
+            <div class="col-md-4">
+                <strong class="d-block text-white">@ViewBag.TotalJugadores</strong>
+                <span class="small">jugadores inscritos</span>
+            </div>
+            <div class="col-md-4">
+                <strong class="d-block text-white">@ViewBag.TotalCategorias</strong>
+                <span class="small">categorías activas</span>
+            </div>
+            <div class="col-md-4">
+                <strong class="d-block text-white">3</strong>
+                <span class="small">sedes en el área metropolitana</span>
+            </div>
+        </div>
+    </div>
+</section>

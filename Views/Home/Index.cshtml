@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Categoria>
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <span class="hero-eyebrow">Academia de fútbol · Medellín</span>
+                <h1 class="hero-title">
+                    Formamos personas
+                    <span>y futbolistas.</span>
+                </h1>
+                <p class="hero-text">
+                    En El Potrero los niños y jóvenes aprenden fútbol con disciplina,
+                    alegría y acompañamiento. Entrenamos por categorías de edad, con
+                    entrenadores certificados y un enfoque formativo.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a class="btn btn-lime btn-lg" asp-controller="Jugadores" asp-action="Create">
+                        Inscribir jugador
+                    </a>
+                    <a class="btn btn-hero-outline btn-lg" asp-controller="Categorias" asp-action="Index">
+                        Ver categorías
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>@ViewBag.TotalCategorias</strong>
+                        <span>categorías</span>
+                    </div>
+                    <div>
+                        <strong>@ViewBag.TotalSedes</strong>
+                        <span>sedes</span>
+                    </div>
+                    <div>
+                        <strong>4–17</strong>
+                        <span>años</span>
+                    </div>
+                    <div>
+                        <strong>@ViewBag.TotalJugadores</strong>
+                        <span>jugadores inscritos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="pitch" aria-hidden="true">
+                        <span class="pitch-halfway"></span>
+                        <span class="pitch-circle"></span>
+                        <span class="hero-ball">⚽</span>
+                    </div>
+                    <div class="float-card float-card-one">
+                        <span class="float-icon" aria-hidden="true">🏆</span>
+                        <span><strong>Formación integral</strong><br />Deporte y valores</span>
+                    </div>
+                    <div class="float-card float-card-two">
+                        <span class="float-icon" aria-hidden="true">📍</span>
+                        <span><strong>3 sedes</strong><br />Norte, Sur y Envigado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+        <div>
+            <span class="section-eyebrow">Nuestras categorías</span>
+            <h2 class="section-title">Un equipo para cada edad</h2>
+            <p class="section-text mb-0">Grupos por edad, con objetivos claros y entrenamientos divertidos.</p>
+        </div>
+        <a class="link-arrow" asp-controller="Categorias" asp-action="Index">Ver todas las categorías →</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
+        @foreach (var categoria in Model)
+        {
+            <partial name="_CategoriaCard" model="categoria" />
+        }
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="cta-band">
+        <div>
+            <span class="cta-label">Inscripciones abiertas 2026</span>
+            <h2 class="cta-title">Ven a entrenar con nosotros</h2>
+            <p class="mb-0">
+                Inscripción sin costo. Si tienes un hermano en la academia,
+                obtienes el <strong>10 % de descuento</strong> en la mensualidad.
+            </p>
+        </div>
+        <a class="btn btn-lime btn-lg flex-shrink-0" asp-controller="Jugadores" asp-action="Create">
+            Comenzar inscripción
+        </a>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="section-heading text-center">
+        <span class="section-eyebrow">Así funciona</span>
+        <h2 class="section-title">Tres pasos para entrar a la cancha</h2>
+        <p class="section-text">La inscripción es en línea y toma menos de cinco minutos.</p>
+    </div>
+
+    <div class="row g-4 mt-1">
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">01</span>
+                <h3 class="h5">Elige la categoría</h3>
+                <p class="mb-0">Revisa las edades, los horarios y la mensualidad de cada grupo.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">02</span>
+                <h3 class="h5">Inscribe al jugador</h3>
+                <p class="mb-0">Completa los datos del deportista y del acudiente en el formulario.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="step-card h-100">
+                <span class="step-number">03</span>
+                <h3 class="h5">Recibe la confirmación</h3>
+                <p class="mb-0">El sistema asigna la categoría por edad y calcula la mensualidad.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="row g-4 align-items-stretch">
+        <div class="col-lg-7">
+            <div class="story-card h-100">
+                <span class="section-eyebrow">Nuestro método</span>
+                <h2 class="section-title">Más que entrenar: crecer en equipo</h2>
+                <p>
+                    Combinamos técnica, táctica y preparación física con hábitos de
+                    disciplina, respeto y trabajo en equipo. Cada entrenamiento está
+                    diseñado para la edad y el nivel del jugador.
+                </p>
+                <div class="row g-3 mt-2">
+                    <div class="col-sm-6">
+                        <div class="value-card">
+                            <span aria-hidden="true">🎯</span>
+                            <h3 class="h6 mb-1">Objetivos por edad</h3>
+                            <p class="small mb-0">Cada categoría tiene su propio plan de formación.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="value-card">
+                            <span aria-hidden="true">🤝</span>
+                            <h3 class="h6 mb-1">Acompañamiento</h3>
+                            <p class="small mb-0">Seguimiento a jugadores y familias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="story-visual h-100" aria-hidden="true">
+                <span class="story-emoji">🥅</span>
+                <span class="story-badge">Desde 2014</span>
+            </div>
+        </div>
+    </div>
+</section>

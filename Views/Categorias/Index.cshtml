@@ -1,0 +1,30 @@
+@model IEnumerable<Categoria>
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-eyebrow">Formación por edades</span>
+        <h1 class="page-title">Nuestras categorías</h1>
+        <p class="page-text">
+            Siete grupos de formación para niños y jóvenes de 4 a 17 años.
+            La categoría se asigna automáticamente según la edad del jugador.
+        </p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var categoria in Model)
+        {
+            <partial name="_CategoriaCard" model="categoria" />
+        }
+    </div>
+
+    <div class="alert alert-warm mt-5 mb-0">
+        <strong>Importante:</strong> la edad se calcula con la fecha de nacimiento.
+        Si el jugador tiene un hermano ya inscrito, la mensualidad recibe un
+        <strong>10 % de descuento</strong>.
+    </div>
+</div>

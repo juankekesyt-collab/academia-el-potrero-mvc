@@ -1,0 +1,155 @@
+@model IEnumerable<Jugador>
+@{
+    ViewData["Title"] = "Jugadores";
+    var categorias = ViewBag.Categorias as List<Categoria> ?? new List<Categoria>();
+    int? categoriaActual = ViewBag.CategoriaActual as int?;
+    var buscar = ViewBag.Buscar as string;
+}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-eyebrow">Semilleros El Potrero</span>
+        <h1 class="page-title">Jugadores inscritos</h1>
+        <p class="page-text">
+            Consulta los jugadores registrados, filtra por categoría o busca por
+            nombre, documento o acudiente.
+        </p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <form method="get" asp-controller="Jugadores" asp-action="Index" class="filter-card">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-5">
+                <label class="form-label" for="buscar">Buscar jugador</label>
+                <input class="form-control" type="search" id="buscar" name="buscar"
+                       value="@buscar" placeholder="Nombre, documento o acudiente…" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="categoriaId">Categoría</label>
+                <select class="form-select" id="categoriaId" name="categoriaId">
+                    <option value="">Todas las categorías</option>
+                    @foreach (var categoria in categorias)
+                    {
+                        <option value="@categoria.Id" selected="@(categoria.Id == categoriaActual ? "selected" : null)">
+                            @categoria.Nombre (@categoria.RangoEdad)
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button class="btn btn-brand flex-grow-1" type="submit">Filtrar</button>
+                <a class="btn btn-outline-secondary" asp-controller="Jugadores" asp-action="Index">Limpiar</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mt-4 mb-3">
+        <p class="results-text mb-0">
+            <strong>@ViewBag.TotalJugadores</strong>
+            @(ViewBag.TotalJugadores == 1 ? "jugador encontrado" : "jugadores encontrados")
+            @if (categoriaActual.HasValue || !string.IsNullOrWhiteSpace(buscar))
+            {
+                <span class="text-muted">de @ViewBag.TotalGeneral en total</span>
+            }
+        </p>
+        @if (categoriaActual.HasValue || !string.IsNullOrWhiteSpace(buscar))
+        {
+            <span class="filter-note">
+                Filtro activo
+                @if (categoriaActual.HasValue)
+                {
+                    var nombreCategoria = categorias.FirstOrDefault(c => c.Id == categoriaActual.Value)?.Nombre;
+                    <strong>· @nombreCategoria</strong>
+                }
+                @if (!string.IsNullOrWhiteSpace(buscar))
+                {
+                    <span>· “@buscar”</span>
+                }
+            </span>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">🔎</span>
+            <h2 class="h4">No encontramos jugadores con esos filtros</h2>
+            <p>Prueba con otra búsqueda o inscribe un nuevo jugador.</p>
+            <a class="btn btn-brand" asp-controller="Jugadores" asp-action="Create">Inscribir jugador</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-3 mb-4">
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    <span class="stat-label">Jugadores</span>
+                    <strong class="stat-value">@ViewBag.TotalJugadores</strong>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    <span class="stat-label">Categorías activas</span>
+                    <strong class="stat-value">@categorias.Count</strong>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    <span class="stat-label">Recaudo mensual estimado</span>
+                    <strong class="stat-value">@ViewBag.RecaudoMensual.ToString("C0")</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="card table-card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jugador</th>
+                            <th scope="col" class="text-center">Edad</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Posición</th>
+                            <th scope="col">Sede</th>
+                            <th scope="col">Acudiente</th>
+                            <th scope="col" class="text-end">Mensualidad</th>
+                            <th scope="col" class="text-end">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var jugador in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@jugador.NombreCompleto</strong>
+                                    <span class="d-block small text-muted">Doc. @jugador.Documento</span>
+                                </td>
+                                <td class="text-center">@jugador.Edad</td>
+                                <td><span class="badge category-badge">@jugador.Categoria?.Nombre</span></td>
+                                <td>@jugador.Posicion</td>
+                                <td>@jugador.Sede</td>
+                                <td>
+                                    @jugador.Acudiente
+                                    <span class="d-block small text-muted">@jugador.Telefono</span>
+                                </td>
+                                <td class="text-end fw-semibold">@jugador.MensualidadFinal.ToString("C0")</td>
+                                <td class="text-end">
+                                    <a class="btn btn-sm btn-outline-brand"
+                                       asp-controller="Jugadores" asp-action="Confirmacion" asp-route-id="@jugador.Id">
+                                        Ver
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="alert alert-warm mt-4">
+            <strong>Recuerda:</strong> las inscripciones se guardan en memoria. Al detener
+            y volver a iniciar la aplicación, la lista vuelve a los jugadores de ejemplo.
+        </div>
+    }
+</div>
