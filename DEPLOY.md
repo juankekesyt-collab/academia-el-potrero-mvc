@@ -8,9 +8,9 @@ sección **Website** del repositorio de GitHub.
 ## Publicación actual
 
 - **Proveedor:** MonsterASP.NET (IIS / .NET 10).
-- **URL:** <http://academiapotrero.runasp.net/>.
-- **Estado:** publicada y probada el 24 de octubre de 2026.
-- **Pendiente opcional:** activar SSL en el panel para usar HTTPS.
+- **URL:** <https://academiapotrero.runasp.net/>.
+- **Estado:** publicada, con SSL activo y probada el 24 de octubre de 2026.
+- **Recomendación:** usar siempre la URL con HTTPS.
 
 ---
 

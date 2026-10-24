@@ -242,11 +242,10 @@ servidor vuelve a calcular todos los valores antes de guardar.
 La aplicación está preparada para publicarse en un servicio con soporte para
 .NET 10 o mediante Docker. El paso a paso está en [`DEPLOY.md`](DEPLOY.md).
 
-**URL pública:** <http://academiapotrero.runasp.net/>
+**URL pública:** <https://academiapotrero.runasp.net/>
 
-> Aplicación publicada en **MonsterASP.NET** con IIS y .NET 10. Para habilitar
-> HTTPS, activar un certificado SSL en el panel de MonsterASP; la aplicación
-> funciona igual en HTTP y HTTPS.
+> Aplicación publicada en **MonsterASP.NET** con IIS, .NET 10 y certificado SSL.
+> Usar siempre la URL con HTTPS.
 
 ## Git y GitHub
 
@@ -279,7 +278,7 @@ formulario y documentación.
 - [x] Funcionalidad del tema con formulario, acciones GET/POST y procesamiento C#.
 - [x] Validación del lado del cliente y del servidor.
 - [x] Repositorio Git con historial de commits.
-- [x] URL pública en MonsterASP.NET: <http://academiapotrero.runasp.net/>.
+- [x] URL pública en MonsterASP.NET: <https://academiapotrero.runasp.net/>.
 - [x] Guion para el video de Teams en `GUION_VIDEO.md`.
 
 ## Autor
