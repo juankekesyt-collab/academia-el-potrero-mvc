@@ -5,6 +5,13 @@ personal (correo y verificación), estos son los pasos para hacerlo en las opcio
 gratuitas más usadas. Al final debes actualizar la URL en `README.md` y en la
 sección **Website** del repositorio de GitHub.
 
+## Publicación actual
+
+- **Proveedor:** MonsterASP.NET (IIS / .NET 10).
+- **URL:** <http://academiapotrero.runasp.net/>.
+- **Estado:** publicada y probada el 24 de octubre de 2026.
+- **Pendiente opcional:** activar SSL en el panel para usar HTTPS.
+
 ---
 
 ## Opción A — Render con Docker (recomendada y gratuita)

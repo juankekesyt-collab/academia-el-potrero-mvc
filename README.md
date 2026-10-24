@@ -242,13 +242,11 @@ servidor vuelve a calcular todos los valores antes de guardar.
 La aplicación está preparada para publicarse en un servicio con soporte para
 .NET 10 o mediante Docker. El paso a paso está en [`DEPLOY.md`](DEPLOY.md).
 
-**URL pública temporal (demostración):**
-<https://resist-amounts-mobiles-tax.trycloudflare.com>
+**URL pública:** <http://academiapotrero.runasp.net/>
 
-> Esta URL funciona mientras la aplicación y el túnel de Cloudflare estén
-> abiertos. Sirve para mostrar el proyecto en el video o en una revisión rápida.
-> Para la entrega definitiva hay que publicar en Render, MonsterASP o Azure y
-> actualizar este enlace y el campo “Website” del repositorio en GitHub.
+> Aplicación publicada en **MonsterASP.NET** con IIS y .NET 10. Para habilitar
+> HTTPS, activar un certificado SSL en el panel de MonsterASP; la aplicación
+> funciona igual en HTTP y HTTPS.
 
 ## Git y GitHub
 
@@ -281,7 +279,7 @@ formulario y documentación.
 - [x] Funcionalidad del tema con formulario, acciones GET/POST y procesamiento C#.
 - [x] Validación del lado del cliente y del servidor.
 - [x] Repositorio Git con historial de commits.
-- [ ] URL pública permanente (ver `DEPLOY.md`).
+- [x] URL pública en MonsterASP.NET: <http://academiapotrero.runasp.net/>.
 - [x] Guion para el video de Teams en `GUION_VIDEO.md`.
 
 ## Autor

@@ -17,7 +17,7 @@ del estudiante, la aplicación funcionando, el código, GitHub y la URL pública
 
 2. Abrir en el navegador:
    - `http://localhost:5186`
-   - La URL pública de la aplicación (hosting o túnel).
+   - `http://academiapotrero.runasp.net/`
    - El repositorio en GitHub.
 3. Abrir Visual Studio Code en `D:\AcademiaFutbolMVC`.
 4. Cerrar notificaciones y pestañas que no se van a mostrar.
@@ -306,18 +306,18 @@ Explicar con la aplicación abierta o con el diagrama del README:
 
 ## 11:45 – 12:30 | Aplicación publicada
 
-1. Abrir la URL pública en una pestaña de incógnito.
+1. Abrir la URL pública en una pestaña de incógnito:
+   `http://academiapotrero.runasp.net/`.
 2. Mostrar la página de inicio, las categorías y registrar una inscripción de
    prueba.
-3. Señalar la barra de direcciones con HTTPS.
+3. Señalar la barra de direcciones con la URL pública.
 
-> “La aplicación está publicada en [proveedor] y se puede acceder desde esta URL
-> pública. El despliegue se hizo con [Docker / FTP / Azure], según la guía del
-> proyecto.”
+> “La aplicación está publicada en **MonsterASP.NET** con IIS y .NET 10, y se
+> puede acceder desde esta URL pública. El despliegue se hizo subiendo la carpeta
+> publicada al sitio y configurando ASP.NET Core en el hosting.”
 
-> Si se usa un túnel temporal de Cloudflare, aclarar que la URL funciona mientras
-> el túnel esté abierto y que la publicación permanente se hace en Render,
-> MonsterASP o Azure.
+> Si más adelante se activa SSL en MonsterASP, la misma aplicación quedará
+> disponible con `https://` sin cambiar el código.
 
 ---
 
