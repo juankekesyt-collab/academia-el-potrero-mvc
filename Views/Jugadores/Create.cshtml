@@ -1,0 +1,209 @@
+@model Jugador
+@{
+    ViewData["Title"] = "Inscribir jugador";
+    ViewData["Description"] = "Formulario de inscripción a la Academia de Fútbol El Potrero.";
+    var categorias = ViewBag.Categorias as List<Categoria> ?? new List<Categoria>();
+}
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-eyebrow">Inscripciones 2026</span>
+        <h1 class="page-title">Inscribe a tu jugador</h1>
+        <p class="page-text">
+            Completa los datos del deportista y del acudiente. La categoría y la
+            mensualidad se calculan automáticamente según la edad.
+        </p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card form-card p-4 p-md-5">
+                <h2 class="h4 mb-4">Datos de la inscripción</h2>
+
+                <form asp-controller="Jugadores" asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary"></div>
+
+                    <h3 class="form-section-title">Datos del jugador</h3>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label asp-for="NombreCompleto" class="form-label">
+                                Nombre completo <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="NombreCompleto" class="form-control" autocomplete="name"
+                                   placeholder="Ej. Samuel Gómez" />
+                            <span asp-validation-for="NombreCompleto" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Documento" class="form-label">
+                                Documento <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Documento" class="form-control" inputmode="numeric"
+                                   placeholder="Ej. 1023456789" />
+                            <span asp-validation-for="Documento" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="FechaNacimiento" class="form-label">
+                                Fecha de nacimiento <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="FechaNacimiento" class="form-control" type="date"
+                                   max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="FechaNacimiento" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Posicion" class="form-label">
+                                Posición <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="Posicion" asp-items="Html.GetEnumSelectList<Posicion>()"
+                                    class="form-select">
+                                <option value="">— Selecciona una posición —</option>
+                            </select>
+                            <span asp-validation-for="Posicion" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="PieHabil" class="form-label"></label>
+                            <select asp-for="PieHabil" asp-items="Html.GetEnumSelectList<PieHabil>()"
+                                    class="form-select"></select>
+                            <span asp-validation-for="PieHabil" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Sede" class="form-label">
+                                Sede <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="Sede" asp-items="Html.GetEnumSelectList<Sede>()"
+                                    class="form-select">
+                                <option value="">— Selecciona una sede —</option>
+                            </select>
+                            <span asp-validation-for="Sede" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section-title mt-4">Acudiente y contacto</h3>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label asp-for="Acudiente" class="form-label">
+                                Nombre del acudiente <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Acudiente" class="form-control" autocomplete="name"
+                                   placeholder="Ej. Laura Gómez" />
+                            <span asp-validation-for="Acudiente" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Telefono" class="form-label">
+                                Teléfono de contacto <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Telefono" class="form-control" type="tel" autocomplete="tel"
+                                   placeholder="300 123 4567" />
+                            <span asp-validation-for="Telefono" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Correo" class="form-label">
+                                Correo electrónico <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Correo" class="form-control" type="email" autocomplete="email"
+                                   placeholder="acudiente@correo.com" />
+                            <span asp-validation-for="Correo" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input asp-for="TieneHermanoEnAcademia" class="form-check-input" role="switch" />
+                                <label asp-for="TieneHermanoEnAcademia" class="form-check-label">
+                                    Tiene un hermano inscrito (10 % de descuento)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input asp-for="AceptaTerminos" class="form-check-input" />
+                                <label asp-for="AceptaTerminos" class="form-check-label">
+                                    Acepto el reglamento de la academia y el tratamiento de datos personales.
+                                </label>
+                                <span asp-validation-for="AceptaTerminos" class="text-danger small d-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <button class="btn btn-brand btn-lg" type="submit">Confirmar inscripción</button>
+                        <a class="btn btn-outline-secondary btn-lg" asp-controller="Categorias" asp-action="Index">
+                            Ver categorías
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <aside class="card summary-card p-4 sticky-lg-top">
+                <h2 class="h5 mb-3">Resumen de la inscripción</h2>
+
+                <div id="resumen-vacio" class="summary-empty">
+                    <span aria-hidden="true">⚽</span>
+                    <p class="mb-0">Completa la fecha de nacimiento para calcular la categoría y la mensualidad.</p>
+                </div>
+
+                <div id="resumen-contenido" class="d-none">
+                    <div class="summary-row">
+                        <span>Edad</span>
+                        <strong id="resumen-edad">—</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Categoría asignada</span>
+                        <strong id="resumen-categoria">—</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Mensualidad base</span>
+                        <span id="resumen-base">$0</span>
+                    </div>
+                    <div class="summary-row summary-discount d-none" id="fila-descuento">
+                        <span>Descuento por hermano (10 %)</span>
+                        <span id="resumen-descuento">-$0</span>
+                    </div>
+                    <hr />
+                    <div class="summary-total">
+                        <span>Mensualidad final</span>
+                        <strong id="resumen-total">$0</strong>
+                    </div>
+                    <p class="summary-note">
+                        Este valor es informativo. La categoría y el total definitivo se
+                        calculan nuevamente en C# al guardar la inscripción.
+                    </p>
+                </div>
+
+                <div id="resumen-error" class="alert alert-warning d-none mt-3 mb-0">
+                    La academia recibe jugadores entre <strong>4 y 17 años</strong>.
+                </div>
+
+                <div class="alert alert-warm small mt-4 mb-0">
+                    <strong>Inscripción sin costo.</strong> La primera mensualidad se
+                    coordina con la academia después de confirmar el cupo.
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script id="categorias-json" type="application/json">
+    @Html.Raw(System.Text.Json.JsonSerializer.Serialize(categorias.Select(c => new
+    {
+        c.Nombre,
+        c.EdadMinima,
+        c.EdadMaxima,
+        c.Mensualidad
+    })))
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/inscripcion.js" asp-append-version="true"></script>
+}
