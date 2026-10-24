@@ -242,8 +242,13 @@ servidor vuelve a calcular todos los valores antes de guardar.
 La aplicación está preparada para publicarse en un servicio con soporte para
 .NET 10 o mediante Docker. El paso a paso está en [`DEPLOY.md`](DEPLOY.md).
 
-**URL pública:** _pendiente de asignar al publicar_ (actualizar este enlace y el
-campo “Website” del repositorio en GitHub).
+**URL pública temporal (demostración):**
+<https://resist-amounts-mobiles-tax.trycloudflare.com>
+
+> Esta URL funciona mientras la aplicación y el túnel de Cloudflare estén
+> abiertos. Sirve para mostrar el proyecto en el video o en una revisión rápida.
+> Para la entrega definitiva hay que publicar en Render, MonsterASP o Azure y
+> actualizar este enlace y el campo “Website” del repositorio en GitHub.
 
 ## Git y GitHub
 
