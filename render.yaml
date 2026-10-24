@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: academia-el-potrero-mvc
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
